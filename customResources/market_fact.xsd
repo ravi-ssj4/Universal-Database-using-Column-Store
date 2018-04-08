@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="market_fact"
+            xmlns="market_fact"
+            elementFormDefault="qualified">
+    
+        	<xsd:element name="Ship_id" type="xsd:string"/>
+        	<xsd:element name="Prod_id" type="xsd:string"/>
+        	<xsd:element name="Ord_id" type="xsd:string"/>
+        	<xsd:element name="Cust_id" type="xsd:string"/>
+        	<xsd:element name="Sales" type="xsd:float"/>
+        	<xsd:element name="Discount" type="xsd:float"/>
+        	<xsd:element name="Order_Quantity" type="xsd:int"/>
+        	<xsd:element name="Profit" type="xsd:float"/>
+        	<xsd:element name="Shipping_Cost" type="xsd:float"/>
+        	<xsd:element name="Product_Base_Margin" type="xsd:float"/>
+        	<xsd:element name="Customer_Name" type="xsd:string"/>
+        	<xsd:element name="City" type="xsd:string"/>
+        	<xsd:element name="State" type="xsd:string"/>
+        	<xsd:element name="Country" type="xsd:string"/>
+        	<xsd:element name="Customer_Segment" type="xsd:string"/>
+        	<xsd:element name="Order_IDx" type="xsd:int"/>
+        	<xsd:element name="Order_Date" type="xsd:date"/>
+        	<xsd:element name="Order_Priority" type="xsd:string"/>
+        	<xsd:element name="Product_Category" type="xsd:string"/>
+        	<xsd:element name="Product_Sub_Category" type="xsd:string"/>
+        	<xsd:element name="Order_IDy" type="xsd:int"/>
+        	<xsd:element name="Ship_Mode" type="xsd:string"/>
+        	<xsd:element name="Ship_Date" type="xsd:date"/>
+			
+		
+   
+</xsd:schema>
+
