@@ -38,44 +38,50 @@ public class XsdReader {
 			//while (schemaIter.hasNext()) {
 				
 				//XSSchema xsSchema = (XSSchema) schemaIter.next();	
-				System.out.println("at line 41");
-				XSComplexType xsComplexType = xsSchema.getComplexType("market"); 
-				System.out.println("at line 43");
-			    XSContentType xsContentType = xsComplexType.getContentType(); 
-			    XSParticle particle = xsContentType.asParticle(); 
-			    if(particle != null){ 
-			        XSTerm term = particle.getTerm(); 
-			        if(term.isModelGroup()){ 
-			            XSModelGroup xsModelGroup = term.asModelGroup(); 
-			            XSParticle[] particles = xsModelGroup.getChildren(); 
-			            String propertyName = null;
-			            String propertyType = null;
-			            for(XSParticle p : particles ){ 
-			                XSTerm pterm = p.getTerm();
-			                
-			                if(pterm.isElementDecl()){ //xs:element inside complex type 
-			                    //System. out.println(pterm); 
-			                    propertyName = pterm.asElementDecl().getName();
-			                    propertyType = pterm.asElementDecl().getType().getName();
-			                    //System.out.println(propertyName + " is a " + propertyType);
-			                    String type = null;
-			                    if(propertyType.equals("float"))
-									type = "float";
-								if(propertyType.equals("string"))
-									type = "varchar(255)";
-								if(propertyType.equals("int"))
-									type = "integer";
-								if(propertyType.equals("date")) 
-									type = "date";
-			                    
-			                    hashMap.put(propertyName, type);
-			                    tablenames.add(propertyName);
-			                    } 
-			            } 
-			        } 
+				//System.out.println("at line 41");
+				Iterator<XSComplexType> i = xsSchema.iterateComplexTypes();
+				//System.out.println(i);
+				while(i.hasNext())
+				{
+					//System.out.println(i.next());
+					XSComplexType c=i.next();
+				    XSContentType xsContentType=c.getContentType() ; 
+				    XSParticle particle = xsContentType.asParticle(); 
+				    if(particle != null){ 
+				        XSTerm term = particle.getTerm(); 
+				        if(term.isModelGroup()){ 
+				            XSModelGroup xsModelGroup = term.asModelGroup(); 
+				            XSParticle[] particles = xsModelGroup.getChildren(); 
+				            String propertyName = null;
+				            String propertyType = null;
+				            for(XSParticle p : particles ){ 
+				                XSTerm pterm = p.getTerm();
+				                
+				                if(pterm.isElementDecl()){ //xs:element inside complex type 
+				                    //System. out.println(pterm); 
+				                    propertyName = pterm.asElementDecl().getName();
+				                    propertyType = pterm.asElementDecl().getType().getName();
+				                    //System.out.println(propertyName + " is a " + propertyType);
+				                    String type = null;
+				                    if(propertyType.equals("float"))
+										type = "float";
+									if(propertyType.equals("string"))
+										type = "varchar(255)";
+									if(propertyType.equals("int"))
+										type = "integer";
+									if(propertyType.equals("date")) 
+										type = "date";
+				                    
+				                    hashMap.put(propertyName, type);
+				                    tablenames.add(propertyName);
+				                    } 
+				            } 
+				        }
+				        } 
+				    
 			    } 
 			//}
-			
+		
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		} catch (SAXException se) {
@@ -84,8 +90,5 @@ public class XsdReader {
 
 		return hashMap;
 	}
-	public ArrayList<String> gettablenames()
-	{
-		return tablenames;
-	}
+	
 }

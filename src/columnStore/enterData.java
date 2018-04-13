@@ -6,18 +6,25 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class enterData {
-	 	
-		@SuppressWarnings("rawtypes")
-	    public void insertCSV(ArrayList<String> colnames)
+	 @SuppressWarnings("rawtypes")
+	    public void insertCSV()
 	    {
 		 
-		 
+		 ArrayList<String> colnames=new ArrayList<String>();
 		 
 		 try {
 	        String splitBy = ",";
 	        BufferedReader br = new BufferedReader(new FileReader("/home/hanshika/eclipse-workspace/columnstore/market_fact_dm_initial.csv"));
 	        String line = br.readLine(); //we have done this to bypass the first line which is just the name of tables
+	        String[] b = line.split(splitBy);
+ 
+            for(int i=0;i<b.length;i++)
+            {
+            	
+            colnames.add(b[i]);
+            }
 	        
+            System.out.println(colnames);
 	        Class.forName("com.mysql.jdbc.Driver"); //it is to load driver
 	        
 	        String url = "jdbc:mysql://localhost:3306/MARKET_FACT"; //database name
@@ -31,7 +38,7 @@ public class enterData {
          
            System.out.println("insertion of rows started......");
 	        while((line = br.readLine())!=null){
-	             String[] b = line.split(splitBy);
+	             b = line.split(splitBy);
 	             //System.out.println(b[0]);
 	             //DatabaseMetaData md = conn.getMetaData();
 	             //ResultSet rs = md.getTables(null,null, "%", null);

@@ -10,9 +10,9 @@ public class DriverProgram {
 	
 	public static void main(String[] args) throws Exception {
 		
-		/*XsdReader rr = new XsdReader();
+		XsdReader rr = new XsdReader();
 		hashMap = rr.parseSchema();	
-		colnames = rr.gettablenames();
+		
 		
 		for (int counter = 0; counter < colnames.size(); counter++) { 		      
 	          System.out.println(colnames.get(counter)); 		
@@ -23,10 +23,10 @@ public class DriverProgram {
 		jdbc.doTheJDBCStuffs(hashMap);
 		
 		enterData data=new enterData();
-		data.insertCSV(colnames);
+		data.insertCSV();
 		
-		*/
-		fireQuery fire=new fireQuery();
-		fire.query();
+		
+		/*fireQuery fire=new fireQuery();
+		fire.query();*/
 	}
 }
